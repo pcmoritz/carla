@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+export UE4_ROOT=~/UnrealEngine_4.17/
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 pushd "$SCRIPT_DIR" >/dev/null
 
@@ -57,8 +59,8 @@ log "Generate Unreal project files..."
 ${UE4_ROOT}/GenerateProjectFiles.sh -project="${PWD}/CarlaUE4.uproject" -game -engine
 set -e
 
-log "Build CarlaUE4 project..."
-make CarlaUE4Editor
+# log "Build CarlaUE4 project..."
+# make CarlaUE4Editor
 
 log "Launching UE4Editor..."
 ${UE4_ROOT}/Engine/Binaries/Linux/UE4Editor "${PWD}/CarlaUE4.uproject"

@@ -17,8 +17,8 @@ if (UNIX)
 
   find_package(Threads)
 
-  set(CMAKE_CXX_COMPILER /usr/bin/clang++-3.9)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -std=c++14 -pthread")
+  # set(CMAKE_CXX_COMPILER /usr/bin/clang++-3.9)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -std=c++14")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -Wno-unused-parameter")
 
   set(CMAKE_POSITION_INDEPENDENT_CODE ON)

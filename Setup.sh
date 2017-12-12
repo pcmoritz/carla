@@ -16,11 +16,11 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 pushd "$SCRIPT_DIR" >/dev/null
 
 # Require clang 3.9
-command -v clang++-3.9 >/dev/null 2>&1 || {
-  echo >&2 "clang 3.9 is required, but it's not installed.";
-  echo >&2 "make sure you build Unreal Engine with clang 3.9 too.";
-  exit 1;
-}
+# command -v clang++-3.9 >/dev/null 2>&1 || {
+#   echo >&2 "clang 3.9 is required, but it's not installed.";
+#   echo >&2 "make sure you build Unreal Engine with clang 3.9 too.";
+#   exit 1;
+# }
 
 # Update content.
 ./Update.sh
@@ -48,8 +48,10 @@ mkdir -p llvm-build
 
 pushd llvm-build >/dev/null
 
-export C_COMPILER=clang-3.9
-export COMPILER=clang++-3.9
+# export C_COMPILER=clang-3.9
+export C_COMPILER=clang
+# export COMPILER=clang++-3.9
+export COMPILER=clang++
 
 cmake -DCMAKE_C_COMPILER=${C_COMPILER} -DCMAKE_CXX_COMPILER=${COMPILER} \
       -DLIBCXX_ENABLE_EXPERIMENTAL_LIBRARY=OFF -DLIBCXX_INSTALL_EXPERIMENTAL_LIBRARY=OFF \
@@ -80,7 +82,8 @@ fi
 
 pushd boost-source >/dev/null
 
-BOOST_TOOLSET="clang-3.9"
+# BOOST_TOOLSET="clang-3.9"
+BOOST_TOOLSET="clang"
 BOOST_CFLAGS="-fPIC -std=c++1y -stdlib=libc++ -I../llvm-install/include/c++/v1"
 BOOST_LFLAGS="-stdlib=libc++ -L../llvm-install/lib"
 
@@ -109,8 +112,8 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$PWD/../llvm-install/lib/"
 
 ./autogen.sh
 ./configure \
-    CC="clang-3.9" \
-    CXX="clang++-3.9" \
+    CC="clang" \
+    CXX="clang++" \
     CXXFLAGS="-fPIC -stdlib=libc++ -I$PWD/../llvm-install/include/c++/v1" \
     LDFLAGS="-stdlib=libc++ -L$PWD/../llvm-install/lib/" \
     --prefix="$PWD/../protobuf-install"

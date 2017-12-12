@@ -24,10 +24,10 @@ static constexpr auto DEPTH_MAT_PATH =
 #elif PLATFORM_WINDOWS
     TEXT("Material'/Carla/PostProcessingMaterials/DepthEffectMaterial.DepthEffectMaterial'");
 #else
-#  error No depth material defined for this platform
+    TEXT("Material'/Carla/PostProcessingMaterials/DepthEffectMaterial_GLSL.DepthEffectMaterial_GLSL'");
 #endif
 
-static constexpr auto SEMANTIC_SEGMENTATION_MAT_PATH =
+constexpr auto SEMANTIC_SEGMENTATION_MAT_PATH =
     TEXT("Material'/Carla/PostProcessingMaterials/GTMaterial.GTMaterial'");
 
 static void RemoveShowFlags(FEngineShowFlags &ShowFlags);
